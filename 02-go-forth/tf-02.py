@@ -93,7 +93,6 @@ def sort():
     # Not in style, left as exercise
     stack.extend(sorted(stack.pop().iteritems(), key=operator.itemgetter(1)))
 
-#
 # The main function
 #
 stack.append(sys.argv[1])
@@ -101,7 +100,9 @@ read_file(); filter_chars(); scan(); remove_stop_words()
 frequencies(); sort()
 
 stack.append(0)
-while stack[-1] < 25:
+# Check stack length against 1, because after we process
+# the last word there will be one item left
+while stack[-1] < 25 and len(stack) > 1:
     heap['i'] = stack.pop()
     (w, f) = stack.pop(); print w, ' - ', f
     stack.append(heap['i']); stack.append(1)
